@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Student Management System{% endblock %}
+
+{% block content %}
+
+<div class="text-center py-5">
+    <h1 class="display-5 fw-bold text-dark mb-3">
+        <i class="bi bi-mortarboard-fill text-primary"></i> Student Management System
+    </h1>
+    <p class="lead text-muted mb-4">Manage student records easily — add, view, update, and delete student information.</p>
+</div>
+
+<div class="row g-4 mb-5">
+    <!-- Total Students Card -->
+    <div class="col-md-4">
+        <div class="card text-center p-4">
+            <div class="card-body">
+                <i class="bi bi-people-fill text-primary" style="font-size: 2.5rem;"></i>
+                <h2 class="fw-bold mt-3">{{ total_students }}</h2>
+                <p class="text-muted">Total Students</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Student Card -->
+    <div class="col-md-4">
+        <div class="card text-center p-4">
+            <div class="card-body">
+                <i class="bi bi-person-plus-fill text-success" style="font-size: 2.5rem;"></i>
+                <h5 class="fw-bold mt-3">Add Student</h5>
+                <p class="text-muted">Register a new student</p>
+                <a href="{% url 'add_student' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle me-1"></i>Add Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- View All Card -->
+    <div class="col-md-4">
+        <div class="card text-center p-4">
+            <div class="card-body">
+                <i class="bi bi-list-ul text-info" style="font-size: 2.5rem;"></i>
+                <h5 class="fw-bold mt-3">View All</h5>
+                <p class="text-muted">Browse student records</p>
+                <a href="{% url 'get_all_std' %}" class="btn btn-info text-white">
+                    <i class="bi bi-eye me-1"></i>View All
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,19 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Get single student details</h1>
+{% extends "base.html" %}
 
-    <h1>Welcome to {{ student.name }}</h1>
-    
-    <h3>Name : {{ student.name }}</h3>
-    <p>Age : {{ student.age }}</p>
-    <p>Phone : {{ student.phone }}</p>
-    <p>Email : {{ student.email }}</p>
-    <img src="{{ student.image.url }}" />
-</body>
-</html>
+{% block title %}{{ student.name }} - Student Details{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card p-4">
+            <div class="card-body text-center">
+
+                <!-- Student Photo -->
+                {% if student.image %}
+                <img src="{{ student.image.url }}" class="student-img-lg mb-3" alt="{{ student.name }}">
+                {% else %}
+                <i class="bi bi-person-circle text-muted" style="font-size:6rem;"></i>
+                {% endif %}
+
+                <h3 class="fw-bold">{{ student.name }}</h3>
+                <span class="badge bg-primary mb-4">{{ student.course }}</span>
+
+                <!-- Details -->
+                <div class="text-start mt-4">
+                    <div class="row mb-3">
+                        <div class="col-5 text-muted fw-semibold">
+                            <i class="bi bi-hash me-2"></i>Student ID
+                        </div>
+                        <div class="col-7">{{ student.id }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-5 text-muted fw-semibold">
+                            <i class="bi bi-calendar me-2"></i>Age
+                        </div>
+                        <div class="col-7">{{ student.age }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-5 text-muted fw-semibold">
+                            <i class="bi bi-envelope me-2"></i>Email
+                        </div>
+                        <div class="col-7">{{ student.email }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-5 text-muted fw-semibold">
+                            <i class="bi bi-telephone me-2"></i>Phone
+                        </div>
+                        <div class="col-7">{{ student.phone }}</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <a href="{% url 'update_student' student.id %}" class="btn btn-warning">
+                        <i class="bi bi-pencil-square me-1"></i>Edit
+                    </a>
+                    <a href="{% url 'delete_student' student.id %}" class="btn btn-danger">
+                        <i class="bi bi-trash me-1"></i>Delete
+                    </a>
+                    <a href="{% url 'get_all_std' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i>Back
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
